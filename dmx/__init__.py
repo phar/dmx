@@ -6,6 +6,23 @@ import os
 
 if os.name == "posix":
     import fcntl
+    
+plat = sys.platform.lower()
+if plat[:5] == 'linux':
+	TIOCSBRK = 0x5427
+	TIOCCBRK = 0x5428
+elif plat == 'cygwin':
+	TIOCSBRK = 0x2000747B
+	TIOCCBRK = 0x2000747A
+elif plat[:3] == 'bsd' or \
+plat[:7] == 'freebsd' or \
+plat[:6] == 'netbsd' or \
+plat[:7] == 'openbsd':
+	TIOCSBRK = 0x2000747B
+	TIOCCBRK = 0x2000747A
+elif plat[:6] == 'darwin':   # OS X
+	TIOCSBRK = 0x2000747B
+	TIOCCBRK = 0x2000747A
 
 class DMX_Serial:
     def __init__(self, port="/dev/ttyUSB0"):
