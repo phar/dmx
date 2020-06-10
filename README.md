@@ -30,15 +30,10 @@ https://stevenbreuls.com/2013/05/diy-usb-dmx-dongle-interface-for-under-10/
 First create an instance of dmx.DMX_Serial(), then start the background thread. Once that is running the dongle will begin sending a full DMX universe.
 To change the value of a channel use set_data(). This function takes a bytes() object with 512 bytes, each representing a single DMX channel. It will be sent on the next DMX refresh.
 ```
-import time
 import dmx
 
-sender = dmx.DMX_Serial()
+sender = DMX_Serial("/dev/tty.usbserial-AD0JKV8Z")
 sender.start()
 for i in range(200):
-    if i % 2:
-        sender.set_data(bytes((255,)*512))
-    else:
-        sender.set_data(bytes((0,)*512))
-    time.sleep(1)
+	sender.set_data(bytes((255,0,255,255) * 64))
 ```
