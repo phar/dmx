@@ -51,9 +51,7 @@ class DMX_Serial:
 		self.enabled = False
 
 	def sender(self):
-		while True:
-			if not(self.enabled):
-				continue
+		while self.enabled:
 			if os.name == "posix":
 				# Linux does not have proper support for variable length breaks, as the behavior of TCSBRK is
 				# undefined for values other than 0. (http://man7.org/linux/man-pages/man2/ioctl_tty.2.html)

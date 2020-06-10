@@ -29,6 +29,11 @@ https://stevenbreuls.com/2013/05/diy-usb-dmx-dongle-interface-for-under-10/
 ## Usage
 First create an instance of dmx.DMX_Serial(), then start the background thread. Once that is running the dongle will begin sending a full DMX universe.
 To change the value of a channel use set_data(). This function takes a bytes() object with 512 bytes, each representing a single DMX channel. It will be sent on the next DMX refresh.
+
+## Tweaks
+I tweked this module a bit to work on other OS's (i use mac) and to use a queue based show thread which allows you to set the timing for how
+long each fram will actusally get displayed without allowing the lights to time out
+
 ```
 import dmx
 
